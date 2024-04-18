@@ -14,7 +14,6 @@ def process_data(df):
     df["COLLECTION_TIME"] = pd.to_datetime(df["COLLECTION_TIME"]).values.astype(np.int64)
     df['Time_Delta'] = df['COLLECTION_TIME'].diff()
     df.drop(["COLLECTION_TIME", "MESSAGE_ID", "MESSAGE_TYPE", "SYMBOL"], axis=1, inplace=True)
-    df["COLLECTION_TIME"] = pd.to_datetime(df["COLLECTION_TIME"]).values.astype(np.int64)
     columns_to_scale = df.columns.difference(['Time_Delta'])
     # Scale the selected columns
     minmax_scaler = MinMaxScaler()
