@@ -1,5 +1,5 @@
 # Initialize the dataset
-from torch.utils.data import Dataset, Subset
+from torch.utils.data import Dataset, Subset, DataLoader
 
 class OrderBookDataset(Dataset):
     
@@ -32,7 +32,7 @@ class OrderBookDataset(Dataset):
                     else:
                         Y.append(0)# 0 is for same
                     break
-        self.price_seq = X
+        self.price_seq = X[:len(Y)]
         self.label = Y
 
     def __len__(self):
@@ -40,3 +40,25 @@ class OrderBookDataset(Dataset):
     
     def __getitem__(self, index):
         return (self.price_seq[index],  self.label[index])
+
+def split_dataset(dataset, split_ratio):
+    
+    # Calculate the sizes of the splits
+    train_size = int(split_ratio * len(dataset))
+    remaining_ratio = (1 - split_ratio)/2
+    test_size = int(remaining_ratio* len(dataset))
+    val_size = len(dataset) - train_size - test_size
+    
+    # Create indices for the splits
+    indices = list(range(len(dataset)))
+    train_indices = indices[:train_size]
+    val_indices = indices[train_size:(train_size + val_size)]
+    test_indices = indices[(train_size + val_size):]
+    return Subset(dataset, train_indices), Subset(dataset, val_indices ), Subset(dataset, test_indices)
+
+def get_data_loaders(dataset, split_ratio, batch_size):
+    train_set, val_set, test_set = split_dataset(dataset, split_ratio)
+    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=True)
+    return train_loader, val_loader, test_loader
