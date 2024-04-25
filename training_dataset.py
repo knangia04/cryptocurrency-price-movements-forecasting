@@ -8,29 +8,18 @@ class OrderBookDataset(Dataset):
         X = []
         Y = []
         nanoseconds =  predict_seconds * 1e9
-        for i in range(num_events, len(order_book_array)): #Starting from num_events because we need num_events of previous data to predict the next one
-            X.append(order_book_array[i - num_events : i, 0]) #Get the previous num_events data
-            """ target_time = order_book_df.loc[i, "COLLECTION_TIME"]  + nanoseconds
-            time_difference = abs(order_book_df['COLLECTION_TIME'] - target_time)
-            # Find the index of the row with the smallest time difference
-            closest_index = time_difference.idxmin()
-            if order_book_df.loc[closest_index, 'MID_PRICE'] > order_book_df.loc[closest_index, 'MID_PRICE']: #If the price goes up
-                Y.append(2) # 2 is for up
-            elif order_book_df.loc[closest_index, 'MID_PRICE'] < order_book_df.loc[closest_index, 'MID_PRICE']: #``If the price goes down
-                Y.append(1) # 1 is for down 
-            else:
-                Y.append(0)# 0 is for same"""
-            print(f"index: {i}")
+        for i in range(num_events, len(order_book_array)):
+            X.append(order_book_array[i - num_events : i])
             sum_nano = 0
-            for j in range(i, len(order_book_array)): 
+            for j in range(i, len(order_book_array)):
                 sum_nano += order_book_df.loc[j, 'Time_Delta']
-                if sum_nano >= nanoseconds: #If the sum of nanoseconds is greater than the nanoseconds we want to predict
-                    if order_book_df.loc[j, 'MID_PRICE'] > order_book_df.loc[i, 'MID_PRICE']: #If the price goes up
-                        Y.append(2) # 2 is for up
-                    elif order_book_df.loc[j, 'MID_PRICE'] < order_book_df.loc[i, 'MID_PRICE']: #``If the price goes down
-                        Y.append(1) # 1 is for down 
+                if sum_nano >= nanoseconds:
+                    if order_book_df.loc[j, 'MID_PRICE'] > order_book_df.loc[i, 'MID_PRICE']:
+                        Y.append(2)
+                    elif order_book_df.loc[j, 'MID_PRICE'] < order_book_df.loc[i, 'MID_PRICE']:
+                        Y.append(1)
                     else:
-                        Y.append(0)# 0 is for same
+                        Y.append(0)
                     break
         self.price_seq = X[:len(Y)]
         self.label = Y
@@ -59,6 +48,6 @@ def split_dataset(dataset, split_ratio):
 def get_data_loaders(dataset, split_ratio, batch_size):
     train_set, val_set, test_set = split_dataset(dataset, split_ratio)
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=True)
-    test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_set, batch_size=batch_size)
+    test_loader = DataLoader(test_set, batch_size=batch_size)
     return train_loader, val_loader, test_loader

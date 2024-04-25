@@ -11,7 +11,10 @@ class LSTMModel(nn.Module):
         self.hidden_size = hidden_size
         self.num_layers = num_layers
         self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
-        self.fc = nn.Linear(hidden_size, 3)
+        self.bn = nn.BatchNorm1d(hidden_size)
+        self.dropout = nn.Dropout(0.5)
+        self.fc1 = nn.Linear(hidden_size,100)
+        self.fc2 = nn.Linear(100, 3)
 
     def forward(self, x):
         
@@ -24,7 +27,9 @@ class LSTMModel(nn.Module):
         #print('c0:', c0.shape)
         # Forward propagate LSTM
         out, _ = self.lstm(x, (h0, c0))  # out: tensor of shape (batch_size, seq_length, hidden_size)
-        
         # Decode the hidden state of the last time step
-        out = self.fc(out[:, -1, :])
+        out = self.bn(out[:, -1, :])
+        #out = self.dropout(out)
+        out = F.relu(self.fc1(out))
+        out = self.fc2(out)
         return out
