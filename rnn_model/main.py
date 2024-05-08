@@ -100,11 +100,11 @@ def main():
             
     def evaluate():
         model.eval()
-        all_y_true = all_y_true = torch.LongTensor()
+        model.eval()
+        all_y_true = torch.LongTensor()
         all_y_pred = torch.LongTensor()
-        all_y_pred = []
         val_loss = 0
-        for i, (x, y) in enumerate(tqdm(val_loader, desc="Validating")):
+        for x, y in val_loader:
             x = x.float()  # Convert input data to torch.float32 type
             y = y.long()  # Convert target data to torch.float32 type
             x = x.to(device)
@@ -114,13 +114,13 @@ def main():
             val_loss += loss.item()
             y_hat = F.softmax(y_hat, dim=1)
             y_pred = torch.argmax(y_hat, dim=1)
-            all_y_true.append(y.to('cpu').long().detach().numpy().flatten())
-            all_y_pred.append(y_pred.to('cpu').long().detach().numpy().flatten())
+            all_y_true = torch.cat((all_y_true, y.to('cpu').long()), dim=0)
+            all_y_pred = torch.cat((all_y_pred,  y_pred.to('cpu').long()), dim=0)
         val_loss = val_loss / len(val_loader)
         acc,  precision, recall, f1 = classification_metrics(all_y_pred.detach().numpy(), 
-                                                            all_y_true.detach().numpy())
-        #print(f"acc: {acc:.3f}, precision: {precision:.3f}, recall: {recall:.3f}, f1: {f1:.3f}")
+                                                                all_y_true.detach().numpy())
         return val_loss, acc, precision, recall, f1
+
 
 
     def classification_metrics(Y_pred, Y_true):
