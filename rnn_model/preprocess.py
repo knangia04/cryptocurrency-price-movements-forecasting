@@ -26,6 +26,11 @@ def cal_price_accumulated_difference(df):
 def cal_vol_accumulated_difference(df):
     return df['ASK_SIZE_1'] - df['BID_SIZE_1'] + df['ASK_SIZE_2'] - df['BID_SIZE_2'] + df['ASK_SIZE_3'] - df['BID_SIZE_3']
 
+def cal_vol_imbalance(df):
+    return df['BID_SIZE_1'] - df['ASK_SIZE_1']
+
+def cal_bid_ask_spread_ratio(df):
+    return df['SPREAD'] / df['MID_PRICE']
 
 def process_data(df):
     df['MID_PRICE'] = cal_mid_price(df)
@@ -37,6 +42,8 @@ def process_data(df):
     df['PRICE_ACCUMULATED_DIFFERENCE'] = cal_price_accumulated_difference(df)
     df['VOL_ACCUMULATED_DIFFERENCE'] = cal_vol_accumulated_difference(df)
     df["COLLECTION_TIME"] = pd.to_datetime(df["COLLECTION_TIME"]).values.astype(np.int64)
+    df['VOLUME_IMBALANCE'] = cal_vol_imbalance(df)
+    df['BID_ASK_SPREAD_RATIO'] = cal_bid_ask_spread_ratio(df)
     df['Time_Delta'] = df['COLLECTION_TIME'].diff()
     df.drop(["COLLECTION_TIME", "MESSAGE_ID", "MESSAGE_TYPE", "SYMBOL"], axis=1, inplace=True)
     # Remove outliers from each column

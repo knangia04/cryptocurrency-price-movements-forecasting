@@ -5,7 +5,7 @@ from sklearn.metrics import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-def train(model, train_loader, val_loader, num_epochs, learning_rate, weight = None):
+def train(model, train_loader, val_loader, num_epochs, learning_rate, save, weight = None):
     # Loss and optimizer
     criterion = nn.CrossEntropyLoss(weight = weight)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
@@ -29,7 +29,7 @@ def train(model, train_loader, val_loader, num_epochs, learning_rate, weight = N
             #y_hat = y_hat.float(requires_grad=True)
             #print(y_hat.shape)
             #print(y_pred)
-            loss = criterion( y_hat, y)
+            loss = criterion(y_hat, y)
             #print(loss)
             loss.backward()
 
@@ -38,6 +38,7 @@ def train(model, train_loader, val_loader, num_epochs, learning_rate, weight = N
             train_loss += loss.item()
                 
         train_loss = train_loss / len(train_loader)
+        torch.save(model.state_dict(), save)
         if epoch % 10 == 0:
             val_loss, acc, precision, recall, f1 = evaluate(model, val_loader, weight = None)
             print(f"Epoch: {epoch} \tTraining Loss: {train_loss:.6f} Validation Loss: {val_loss:.6f} acc: {acc:.3f}, precision: {precision:.3f}, recall: {recall:.3f}, f1: {f1:.3f}")
