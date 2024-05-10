@@ -19,6 +19,7 @@ import training
 import preprocess
 import training_dataset
 import rnn_models
+import backtest
 from pathlib import Path
 from ray import tune
 from ray import train
@@ -29,6 +30,8 @@ import ray.cloudpickle as pickle
 parser = argparse.ArgumentParser(description='LOB RNN Model: Main Function')
 parser.add_argument('--data_file', type=str, default='../data',
                     help='location of market data')
+parser.add_argument('--backtesting_file', type=str, default='backtest.csv',
+                    help='location of backtesting data')
 parser.add_argument('--model', type=str, default='LSTM',
                     help='type of rnn (LSTM, GRU)')
 parser.add_argument('--hidden_size', type=int, default=128,
@@ -181,6 +184,16 @@ def main():
     plt.ylabel('Loss')
     plt.legend()
     plt.show()
+
+
+    print("----- Beginning backtesting -----")
+    print('=' * 89)
+    df = pd.read_csv(args.backtesting_file)
+    initial_value, final_value = backtest.backtest_model(model, args.backtesting_file, device)
+    print('Starting Portfolio Value: %.2f' % initial_value)
+    print('Final Portfolio Value: %.2f' % final_value)
+    print('=' * 89)
+    print("----- End of backtesting -----")
     
 if  __name__ == '__main__':
     main()
