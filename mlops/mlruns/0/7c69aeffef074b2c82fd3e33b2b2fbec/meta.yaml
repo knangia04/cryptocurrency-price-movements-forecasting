@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/howar/Documents/UIUC/IE%20421/project/group_10_project/mlops/mlruns/0/7c69aeffef074b2c82fd3e33b2b2fbec/artifacts
+end_time: 1715535896165
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7c69aeffef074b2c82fd3e33b2b2fbec
+run_name: wistful-trout-153
+run_uuid: 7c69aeffef074b2c82fd3e33b2b2fbec
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1715535896110
+status: 3
+tags: []
+user_id: howar

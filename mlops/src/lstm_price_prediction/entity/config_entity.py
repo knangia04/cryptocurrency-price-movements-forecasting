@@ -23,12 +23,14 @@ class PrepareModelConfig:
    
 
 
-
+@dataclass(frozen=True)
 class TrainingConfig:
     root_dir: Path
     trained_model_path: Path
     untrained_model_path: Path
+    mlflow_uri: str
     training_data: Path
+    all_params: dict
     params_epochs: int
     params_batch_size: int
     params_predict_events: int

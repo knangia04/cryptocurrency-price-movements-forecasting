@@ -19,7 +19,7 @@ class ModelTrainingPipeline:
         training = Training(config=training_config, model_config=model_config)
         training.get_base_model()
         training.train_valid_generator()
-        training.train()
+        training.training()
 
 
 

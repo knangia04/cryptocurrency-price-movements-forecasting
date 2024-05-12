@@ -304,3 +304,448 @@ Traceback (most recent call last):
   File "C:\Users\howar\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1695, in __getattr__
     raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
 AttributeError: 'LSTMModel' object has no attribute 'save'
+[2024-05-12 11:47:02,886: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 11:47:02,886: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 11:47:09,644: INFO: main: *******************]
+[2024-05-12 11:47:09,644: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 11:47:09,652: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:47:09,652: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:47:09,652: INFO: common: created directory at: artifacts]
+[2024-05-12 11:47:09,652: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:47:10,013: ERROR: main: 'LSTMModel' object has no attribute 'save']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 28, in <module>
+    prepare_base_model.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_02_prepare_model.py", line 18, in main
+    prepare_model.get_model()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\prepare_model.py", line 19, in get_model
+    self.save_model(path=self.config.model_path, model=self.model)
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\prepare_model.py", line 68, in save_model
+    model.save(path)
+    ^^^^^^^^^^
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1695, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'LSTMModel' object has no attribute 'save'
+[2024-05-12 11:47:59,731: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 11:47:59,739: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 11:48:08,079: INFO: main: *******************]
+[2024-05-12 11:48:08,079: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 11:48:08,087: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:48:08,087: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:48:08,087: INFO: common: created directory at: artifacts]
+[2024-05-12 11:48:08,087: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:48:08,395: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 11:48:08,403: INFO: main: *******************]
+[2024-05-12 11:48:08,403: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 11:48:08,403: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:48:08,403: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:48:08,403: INFO: common: created directory at: artifacts]
+[2024-05-12 11:48:08,403: INFO: common: created directory at: artifacts\training]
+[2024-05-12 11:48:08,407: ERROR: main: TrainingConfig() takes no arguments]
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 17, in main
+    training_config = config.get_training_config()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\config\configuration.py", line 64, in get_training_config
+    training_config = TrainingConfig(
+                      ^^^^^^^^^^^^^^^
+TypeError: TrainingConfig() takes no arguments
+[2024-05-12 11:51:25,048: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 11:51:25,048: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 11:51:33,776: INFO: main: *******************]
+[2024-05-12 11:51:33,776: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 11:51:33,784: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:51:33,784: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:51:33,784: INFO: common: created directory at: artifacts]
+[2024-05-12 11:51:33,784: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:51:34,048: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 11:51:34,048: INFO: main: *******************]
+[2024-05-12 11:51:34,048: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 11:51:34,048: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:51:34,056: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:51:34,056: INFO: common: created directory at: artifacts]
+[2024-05-12 11:51:34,056: INFO: common: created directory at: artifacts\training]
+[2024-05-12 11:51:34,056: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:51:34,056: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:51:34,545: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 11:51:34,545: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 11:51:34,673: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 11:53:15,924: ERROR: main: Parent directory mlops\artifacts\training does not exist.]
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 100, in train
+    self.save_model(
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 76, in save_model
+    torch.save(model.state_dict(), path)
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\serialization.py", line 618, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\serialization.py", line 492, in _open_zipfile_writer
+    return container(name_or_buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\serialization.py", line 463, in __init__
+    super().__init__(torch._C.PyTorchFileWriter(self.name))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Parent directory mlops\artifacts\training does not exist.
+[2024-05-12 11:55:32,953: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 11:55:32,953: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 11:55:41,516: INFO: main: *******************]
+[2024-05-12 11:55:41,516: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 11:55:41,524: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:55:41,524: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:55:41,524: INFO: common: created directory at: artifacts]
+[2024-05-12 11:55:41,524: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:55:41,741: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 11:55:41,741: INFO: main: *******************]
+[2024-05-12 11:55:41,741: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 11:55:41,741: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:55:41,749: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:55:41,749: INFO: common: created directory at: artifacts]
+[2024-05-12 11:55:41,749: INFO: common: created directory at: artifacts\training]
+[2024-05-12 11:55:41,749: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:55:41,749: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:55:42,077: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 11:55:42,077: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 11:55:42,149: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 11:57:10,755: ERROR: main: Training.validate() got an unexpected keyword argument 'weight']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 105, in train
+    val_loss, acc, precision, recall, f1 = self.validate(self.model, self.val_loader, weight = None)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Training.validate() got an unexpected keyword argument 'weight'
+[2024-05-12 11:59:41,841: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 11:59:41,841: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 11:59:50,532: INFO: main: *******************]
+[2024-05-12 11:59:50,532: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 11:59:50,532: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:59:50,532: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:59:50,532: INFO: common: created directory at: artifacts]
+[2024-05-12 11:59:50,532: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:59:50,773: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 11:59:50,773: INFO: main: *******************]
+[2024-05-12 11:59:50,773: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 11:59:50,773: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:59:50,773: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:59:50,773: INFO: common: created directory at: artifacts]
+[2024-05-12 11:59:50,773: INFO: common: created directory at: artifacts\training]
+[2024-05-12 11:59:50,781: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:59:50,781: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:59:51,197: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 11:59:51,197: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 11:59:51,278: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:01:21,948: ERROR: main: Training.validate() takes 1 positional argument but 3 were given]
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 104, in train
+    val_loss, acc, precision, recall, f1 = self.validate(self.model, self.val_loader)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Training.validate() takes 1 positional argument but 3 were given
+[2024-05-12 12:01:53,121: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:01:53,121: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:02:01,696: INFO: main: *******************]
+[2024-05-12 12:02:01,696: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:02:01,702: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:02:01,704: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:02:01,704: INFO: common: created directory at: artifacts]
+[2024-05-12 12:02:01,704: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:02:01,899: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:02:01,899: INFO: main: *******************]
+[2024-05-12 12:02:01,899: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:02:01,899: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:02:01,899: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:02:01,899: INFO: common: created directory at: artifacts]
+[2024-05-12 12:02:01,899: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:02:01,899: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:02:01,905: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:02:02,201: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:02:02,201: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:02:02,262: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:04:52,791: ERROR: main: 'Training' object has no attribute 'load_model']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 104, in train
+    val_loss, acc, precision, recall, f1 = self.validate()
+                                           ^^^^^^^^^^^^^^^
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 51, in validate
+    self.load_model(self.model_path)
+    ^^^^^^^^^^^^^^^
+AttributeError: 'Training' object has no attribute 'load_model'
+[2024-05-12 12:06:57,516: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:06:57,516: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:07:06,308: INFO: main: *******************]
+[2024-05-12 12:07:06,308: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:07:06,308: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:07:06,315: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:07:06,315: INFO: common: created directory at: artifacts]
+[2024-05-12 12:07:06,315: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:07:06,639: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:07:06,639: INFO: main: *******************]
+[2024-05-12 12:07:06,639: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:07:06,639: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:07:06,646: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:07:06,646: INFO: common: created directory at: artifacts]
+[2024-05-12 12:07:06,646: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:07:06,646: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:07:06,646: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:07:07,013: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:07:07,013: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:07:07,094: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:12:03,563: ERROR: main: module 'torch.functional' has no attribute 'softmax']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 103, in train
+    val_loss, acc, precision, recall, f1 = self.validate()
+                                           ^^^^^^^^^^^^^^^
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 63, in validate
+    y_hat = F.softmax(y_hat, dim=1)
+            ^^^^^^^^^
+AttributeError: module 'torch.functional' has no attribute 'softmax'
+[2024-05-12 12:13:48,621: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:13:48,621: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:13:57,117: INFO: main: *******************]
+[2024-05-12 12:13:57,117: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:13:57,117: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:13:57,117: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:13:57,117: INFO: common: created directory at: artifacts]
+[2024-05-12 12:13:57,117: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:13:57,378: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:13:57,378: INFO: main: *******************]
+[2024-05-12 12:13:57,378: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:13:57,383: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:13:57,383: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:13:57,383: INFO: common: created directory at: artifacts]
+[2024-05-12 12:13:57,383: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:13:57,383: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:13:57,386: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:13:57,703: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:13:57,703: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:13:57,767: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:17:21,086: ERROR: main: Training.log_into_mlflow() missing 4 required positional arguments: 'train_loss', 'val_loss', 'val_acc', and 'val_f1score']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 105, in train
+    self.log_into_mlflow()
+TypeError: Training.log_into_mlflow() missing 4 required positional arguments: 'train_loss', 'val_loss', 'val_acc', and 'val_f1score'
+[2024-05-12 12:19:52,073: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:19:52,081: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:20:00,730: INFO: main: *******************]
+[2024-05-12 12:20:00,730: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:20:00,730: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:20:00,730: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:20:00,730: INFO: common: created directory at: artifacts]
+[2024-05-12 12:20:00,730: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:20:00,931: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:20:00,931: INFO: main: *******************]
+[2024-05-12 12:20:00,931: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:20:00,931: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:20:00,931: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:20:00,931: INFO: common: created directory at: artifacts]
+[2024-05-12 12:20:00,931: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:20:00,931: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:20:00,939: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:20:01,236: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:20:01,236: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:20:01,300: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:25:18,091: ERROR: main: 'TrainingConfig' object has no attribute 'mlflow_uri']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 105, in train
+    self.log_into_mlflow(train_loss, val_loss, acc, f1)
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 108, in log_into_mlflow
+    mlflow.set_registry_uri(self.config.mlflow_uri)
+                            ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TrainingConfig' object has no attribute 'mlflow_uri'
+[2024-05-12 12:30:35,560: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:30:35,560: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:30:43,981: INFO: main: *******************]
+[2024-05-12 12:30:43,981: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:30:43,981: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:30:43,981: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:30:43,981: INFO: common: created directory at: artifacts]
+[2024-05-12 12:30:43,981: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:30:44,181: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:30:44,181: INFO: main: *******************]
+[2024-05-12 12:30:44,181: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:30:44,181: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:30:44,189: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:30:44,189: INFO: common: created directory at: artifacts]
+[2024-05-12 12:30:44,189: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:30:44,189: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:30:44,189: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:30:44,463: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:30:44,463: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:30:44,519: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:34:44,363: ERROR: main: 'TrainingConfig' object has no attribute 'all_params']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 105, in train
+    self.log_into_mlflow(train_loss, val_loss, acc, f1)
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 111, in log_into_mlflow
+    mlflow.log_params(self.config.all_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TrainingConfig' object has no attribute 'all_params'
+[2024-05-12 12:38:36,764: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:38:36,764: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:38:45,644: INFO: main: *******************]
+[2024-05-12 12:38:45,644: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:38:45,656: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:38:45,668: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:38:45,668: INFO: common: created directory at: artifacts]
+[2024-05-12 12:38:45,668: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:38:45,916: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:38:45,916: INFO: main: *******************]
+[2024-05-12 12:38:45,916: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:38:45,924: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:38:45,924: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:38:45,924: INFO: common: created directory at: artifacts]
+[2024-05-12 12:38:45,924: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:38:45,924: ERROR: main: TrainingConfig.__init__() got an unexpected keyword argument 'all_params']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 17, in main
+    training_config = config.get_training_config()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\config\configuration.py", line 64, in get_training_config
+    training_config = TrainingConfig(
+                      ^^^^^^^^^^^^^^^
+TypeError: TrainingConfig.__init__() got an unexpected keyword argument 'all_params'
+[2024-05-12 12:40:17,808: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:40:17,808: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:40:26,559: INFO: main: *******************]
+[2024-05-12 12:40:26,559: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:40:26,564: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:40:26,564: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:40:26,564: INFO: common: created directory at: artifacts]
+[2024-05-12 12:40:26,564: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:40:26,797: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:40:26,805: INFO: main: *******************]
+[2024-05-12 12:40:26,805: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:40:26,805: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:40:26,805: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:40:26,805: INFO: common: created directory at: artifacts]
+[2024-05-12 12:40:26,805: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:40:26,805: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:40:26,813: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:40:27,230: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:40:27,230: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:40:27,318: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:44:56,690: ERROR: main: cudnn RNN backward can only be called in training mode]
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.train()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 93, in train
+    loss.backward()
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\_tensor.py", line 492, in backward
+    torch.autograd.backward(
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\autograd\__init__.py", line 251, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: cudnn RNN backward can only be called in training mode
+[2024-05-12 12:49:52,235: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:49:52,235: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:50:01,265: INFO: main: *******************]
+[2024-05-12 12:50:01,265: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:50:01,265: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:50:01,273: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:50:01,273: INFO: common: created directory at: artifacts]
+[2024-05-12 12:50:01,273: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:50:01,529: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:50:01,529: INFO: main: *******************]
+[2024-05-12 12:50:01,529: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:50:01,537: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:50:01,537: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:50:01,537: INFO: common: created directory at: artifacts]
+[2024-05-12 12:50:01,537: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:50:01,537: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:50:01,537: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:50:01,994: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:50:01,994: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:50:02,082: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]
+[2024-05-12 12:53:53,398: ERROR: main: cudnn RNN backward can only be called in training mode]
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 42, in <module>
+    model_trainer.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_03_model_trainer.py", line 22, in main
+    training.training()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\model_trainer.py", line 92, in training
+    loss.backward()
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\_tensor.py", line 492, in backward
+    torch.autograd.backward(
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\autograd\__init__.py", line 251, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: cudnn RNN backward can only be called in training mode
+[2024-05-12 12:55:27,230: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 12:55:27,230: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 12:55:36,001: INFO: main: *******************]
+[2024-05-12 12:55:36,001: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 12:55:36,001: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:55:36,005: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:55:36,005: INFO: common: created directory at: artifacts]
+[2024-05-12 12:55:36,005: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:55:36,188: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2024-05-12 12:55:36,188: INFO: main: *******************]
+[2024-05-12 12:55:36,188: INFO: main: >>>>>> stage Training started <<<<<<]
+[2024-05-12 12:55:36,188: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 12:55:36,196: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:55:36,196: INFO: common: created directory at: artifacts]
+[2024-05-12 12:55:36,196: INFO: common: created directory at: artifacts\training]
+[2024-05-12 12:55:36,197: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 12:55:36,197: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 12:55:36,477: INFO: file_utils: TensorFlow version 2.12.0 available.]
+[2024-05-12 12:55:36,477: INFO: file_utils: PyTorch version 2.1.0 available.]
+[2024-05-12 12:55:36,542: INFO: modeling_xlnet: Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .]

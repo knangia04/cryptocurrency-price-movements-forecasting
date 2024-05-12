@@ -1,14 +1,13 @@
 import os
 import urllib.request as request
 from zipfile import ZipFile
-import tensorflow as tf
+import torch.nn.functional as F
 from urllib.parse import urlparse
 from src.lstm_price_prediction.entity.config_entity import TrainingConfig,PrepareModelConfig
 from pathlib import Path
 import os
 import urllib.request as request
 from zipfile import ZipFile
-import tensorflow as tf
 import time
 from src.lstm_price_prediction.components.rnn_model import rnn_models
 import torch.nn as nn
@@ -49,7 +48,6 @@ class Training:
         self.test_loader = test_loader
 
     def validate(self):
-        self.load_model(self.model_path)
         self.model.eval()
         all_y_true = torch.LongTensor()
         all_y_pred = torch.LongTensor()
@@ -78,11 +76,10 @@ class Training:
 
 
     
-    def train(self):
-        # Train the model in one epoch
-        self.model.train()
+    def training(self):
         train_loss = 0
-        for epoch in range(self.params.EPOCHS): 
+        for epoch in range(self.params.EPOCHS):
+            self.model.train()
             for i, (x, y) in enumerate(tqdm(self.train_loader, desc="Training")):
                 x = x.float()  # Convert input data to torch.float32 type
                 y = y.long()  # Convert target data to torch.float32 type
@@ -102,9 +99,9 @@ class Training:
                 model=self.model
             )
             if epoch % 10 == 0:
-                val_loss, acc, precision, recall, f1 = self.validate(self.model, self.val_loader, weight = None)
+                val_loss, acc, precision, recall, f1 = self.validate()
                 print(f"Epoch: {epoch} \tTraining Loss: {train_loss:.6f} Validation Loss: {val_loss:.6f} acc: {acc:.3f}, precision: {precision:.3f}, recall: {recall:.3f}, f1: {f1:.3f}")
-                self.log_into_mlflow()
+                self.log_into_mlflow(train_loss, val_loss, acc, f1)
     
     def log_into_mlflow(self, train_loss, val_loss, val_acc, val_f1score):
         mlflow.set_registry_uri(self.config.mlflow_uri)
