@@ -25,16 +25,16 @@ import mlflow
 import mlflow.pytorch
 import mlflow.sklearn
 import mlflow.tensorflow
-import dvc.api
-from ray import tune
-from ray import train
-from ray.train import Checkpoint, get_checkpoint
-from ray.tune.schedulers import ASHAScheduler
-import ray.cloudpickle as pickle
+# import dvc.api
+# from ray import tune
+# from ray import train
+# from ray.train import Checkpoint, get_checkpoint
+# from ray.tune.schedulers import ASHAScheduler
+# import ray.cloudpickle as pickle
 
 # Initialize MLflow tracking
-mlflow.set_tracking_uri("your_mlflow_tracking_uri")
-mlflow.set_experiment("your_experiment_name")
+mlflow.set_tracking_uri(uri="http://127.0.0.1:8080")
+mlflow.set_experiment("Test experiment")
 
 parser = argparse.ArgumentParser(description='LOB RNN Model: Main Function')
 parser.add_argument('--data_file', type=str, default='../data',
