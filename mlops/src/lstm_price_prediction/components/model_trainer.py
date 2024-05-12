@@ -8,7 +8,6 @@ from pathlib import Path
 import os
 import urllib.request as request
 from zipfile import ZipFile
-import time
 from src.lstm_price_prediction.components.rnn_model import rnn_models
 import torch.nn as nn
 from tqdm import tqdm
