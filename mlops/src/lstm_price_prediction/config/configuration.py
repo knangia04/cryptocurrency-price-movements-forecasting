@@ -1,7 +1,7 @@
 import os
-from lstm_price_prediction.constants import *
-from lstm_price_prediction.utils.common import read_yaml, create_directories
-from lstm_price_prediction.entity.config_entity import (DataIngestionConfig,
+from src.lstm_price_prediction.constants import *
+from src.lstm_price_prediction.utils.common import read_yaml, create_directories
+from src.lstm_price_prediction.entity.config_entity import (DataIngestionConfig,
                                                 PrepareModelConfig,
                                                 TrainingConfig,
                                                 EvaluationConfig)

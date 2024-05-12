@@ -8,8 +8,7 @@ from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
-import base64
-
+from sklearn.metrics import *
 
 
 @ensure_annotations
@@ -125,14 +124,9 @@ def get_size(path: Path) -> str:
     return f"~ {size_in_kb} KB"
 
 
-def decodeImage(imgstring, fileName):
-    imgdata = base64.b64decode(imgstring)
-    with open(fileName, 'wb') as f:
-        f.write(imgdata)
-        f.close()
-
-
-def encodeImageIntoBase64(croppedImagePath):
-    with open(croppedImagePath, "rb") as f:
-        return base64.b64encode(f.read())
-
+def classification_metrics(Y_pred, Y_true):
+        acc, precision, recall, f1score = accuracy_score(Y_true, Y_pred), \
+                                            precision_score(Y_true, Y_pred, average='weighted', zero_division = 1), \
+                                            recall_score(Y_true, Y_pred, average='weighted'), \
+                                            f1_score(Y_true, Y_pred, average='weighted')
+        return acc,  precision, recall, f1score

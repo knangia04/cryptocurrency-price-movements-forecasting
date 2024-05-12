@@ -257,3 +257,50 @@
 [2024-05-12 08:06:42,467: INFO: common: yaml file: mlops\params.yaml loaded successfully]
 [2024-05-12 08:06:42,469: INFO: common: created directory at: artifacts]
 [2024-05-12 08:06:42,470: INFO: common: yaml file: mlops\params.yaml loaded successfully]
+[2024-05-12 10:57:14,020: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 10:57:14,021: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 10:57:54,168: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 10:57:54,168: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 10:57:59,401: INFO: main: *******************]
+[2024-05-12 10:57:59,401: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 10:57:59,402: ERROR: main: [Errno 2] No such file or directory: 'mlops\\config\\config.yaml']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 28, in <module>
+    prepare_base_model.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_02_prepare_model.py", line 15, in main
+    config = ConfigurationManager()
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\config\configuration.py", line 16, in __init__
+    self.config = read_yaml(config_filepath)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\howar\anaconda3\Lib\site-packages\ensure\main.py", line 849, in __call__
+    return_val = self.f(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\utils\common.py", line 36, in read_yaml
+    raise e
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\utils\common.py", line 29, in read_yaml
+    with open(path_to_yaml) as yaml_file:
+         ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mlops\\config\\config.yaml'
+[2024-05-12 11:02:23,476: INFO: utils: Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.]
+[2024-05-12 11:02:23,477: INFO: utils: NumExpr defaulting to 8 threads.]
+[2024-05-12 11:02:28,828: INFO: main: *******************]
+[2024-05-12 11:02:28,828: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2024-05-12 11:02:28,830: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-05-12 11:02:28,831: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-05-12 11:02:28,831: INFO: common: created directory at: artifacts]
+[2024-05-12 11:02:28,832: INFO: common: created directory at: artifacts/prepare_model]
+[2024-05-12 11:02:29,206: ERROR: main: 'LSTMModel' object has no attribute 'save']
+Traceback (most recent call last):
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\main.py", line 28, in <module>
+    prepare_base_model.main()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\pipeline\stage_02_prepare_model.py", line 18, in main
+    prepare_model.get_model()
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\prepare_model.py", line 19, in get_model
+    self.save_model(path=self.config.model_path, model=self.model)
+  File "C:\Users\howar\Documents\UIUC\IE 421\project\group_10_project\mlops\src\lstm_price_prediction\components\prepare_model.py", line 68, in save_model
+    model.save(path)
+    ^^^^^^^^^^
+  File "C:\Users\howar\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1695, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'LSTMModel' object has no attribute 'save'

@@ -1,6 +1,6 @@
-from lstm_price_prediction.config.configuration import ConfigurationManager
-from lstm_price_prediction.components.prepare_model import PrepareModel
-from lstm_price_prediction import logger
+from src.lstm_price_prediction.config.configuration import ConfigurationManager
+from src.lstm_price_prediction.components.prepare_model import PrepareModel
+from src.lstm_price_prediction import logger
 
 
 

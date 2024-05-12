@@ -2,9 +2,9 @@ from pathlib import Path
 import mlflow
 import mlflow.keras
 from urllib.parse import urlparse
-from lstm_price_prediction.entity.config_entity import EvaluationConfig
-from lstm_price_prediction.utils.common import read_yaml,save_json
-from lstm_price_prediction.constants import *
+from src.lstm_price_prediction.entity.config_entity import EvaluationConfig
+from src.lstm_price_prediction.utils.common import read_yaml,save_json
+from src.lstm_price_prediction.constants import *
 from src.lstm_price_prediction.components.rnn_model import preprocess, training_dataset 
 import torch
 import pandas as pd
@@ -52,7 +52,7 @@ class Evaluation:
         val_loss = val_loss / len(self.test_loader)
         acc,  precision, recall, f1 = Evaluation.classification_metrics(all_y_pred.detach().numpy(), 
                                                                 all_y_true.detach().numpy())
-        self.score = [val_loss,acc,f1]
+        self.score = [acc,f1]
     
     @staticmethod
     def classification_metrics(Y_pred, Y_true):
@@ -67,7 +67,7 @@ class Evaluation:
         self.model.load_state_dict(torch.load(path))
 
     def save_score(self):
-        scores = {"loss": self.score[0], "accuracy": self.score[1], "f1score": self.score[2]}
+        scores = {"loss": self.score[0], "test accuracy": self.score[1], "test f1score": self.score[2]}
         save_json(path=Path("scores.json"), data=scores)
 
     
