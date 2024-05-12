@@ -1,11 +1,16 @@
-import tensorflow as tf
 from pathlib import Path
 import mlflow
 import mlflow.keras
 from urllib.parse import urlparse
 from lstm_price_prediction.entity.config_entity import EvaluationConfig
-from lstm_price_prediction.utils.common import read_yaml, create_directories,save_json
-
+from lstm_price_prediction.utils.common import read_yaml,save_json
+from lstm_price_prediction.constants import *
+from src.lstm_price_prediction.components.rnn_model import preprocess, training_dataset 
+import torch
+import pandas as pd
+import torch.nn.functional as F
+from sklearn.metrics import *
+from src.lstm_price_prediction.components.rnn_model import rnn_models
 
 class Evaluation:
     def __init__(self, config: EvaluationConfig):
@@ -35,8 +40,8 @@ class Evaluation:
         for x, y in self.test_loader:
             x = x.float()  # Convert input data to torch.float32 type
             y = y.long()  # Convert target data to torch.float32 type
-            x = x.to(device)
-            y = y.to(device)
+            x = x.to(self.device)
+            y = y.to(self.device)
             y_hat = self.model(x)
             loss = self.criterion(y_hat, y)
             val_loss += loss.item()
