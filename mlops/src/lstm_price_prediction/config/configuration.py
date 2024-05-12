@@ -43,7 +43,6 @@ class ConfigurationManager:
         prepare_model_config = PrepareModelConfig(
             root_dir=Path(config.root_dir),
             model_path=Path(config.model_path),
-            updated_model_path=Path(config.updated_model_path),
             params_input_size = self.params.INPUT_SIZE,
             params_hidden_size = self.params.HIDDEN_SIZE,
             params_num_layers = self.params.NUM_LAYERS,
@@ -53,43 +52,38 @@ class ConfigurationManager:
         )
 
         return prepare_model_config
-    
-
-
     def get_training_config(self) -> TrainingConfig:
         training = self.config.training
-        prepare_base_model = self.config.prepare_base_model
         params = self.params
-        training_data = os.path.join(self.config.data_ingestion.unzip_dir, "Chest-CT-Scan-data")
+        untrained_model = self.config.prepare_model
+        training_data_path = "..data/20220801_book_updates.csv"
         create_directories([
             Path(training.root_dir)
         ])
 
         training_config = TrainingConfig(
             root_dir=Path(training.root_dir),
+            untrained_model_path=Path(untrained_model.model_path),
             trained_model_path=Path(training.trained_model_path),
-            updated_base_model_path=Path(prepare_base_model.updated_base_model_path),
-            training_data=Path(training_data),
+            training_data=training_data_path,
             params_epochs=params.EPOCHS,
             params_batch_size=params.BATCH_SIZE,
-            params_is_augmentation=params.AUGMENTATION,
-            params_image_size=params.IMAGE_SIZE
+            params_sequence_length=params.SEQUENCE_LENGTH,
+            params_predict_events=params.PREDICT_EVENTS,
+            params_val_interval=params.VAL_INTERVAL
         )
 
         return training_config
     
-
-
-
     def get_evaluation_config(self) -> EvaluationConfig:
         eval_config = EvaluationConfig(
-            path_of_model="artifacts/training/model.h5",
-            training_data="artifacts/data_ingestion/Chest-CT-Scan-data",
-            mlflow_uri="https://dagshub.com/entbappy/chest-Disease-Classification-MLflow-DVC.mlflow",
+            path_of_model=self.config.training.trained_model_path,
+            training_data="20220801_book_updates.csv",
+            mlflow_uri="https://dagshub.com/wko21/ie421_hft_spring_2024_group_10.mlflow",
             all_params=self.params,
-            params_image_size=self.params.IMAGE_SIZE,
             params_batch_size=self.params.BATCH_SIZE
         )
         return eval_config
+
 
       

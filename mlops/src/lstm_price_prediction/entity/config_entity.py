@@ -24,19 +24,16 @@ class PrepareModelConfig:
 
 
 
-@dataclass(frozen=True)
 class TrainingConfig:
     root_dir: Path
     trained_model_path: Path
-    updated_base_model_path: Path
+    untrained_model_path: Path
     training_data: Path
     params_epochs: int
     params_batch_size: int
-    params_num_epochs: int
+    params_predict_events: int
     params_sequence_length: int
     params_val_interval: int
-    params_predict_events: int
-
 
 
 @dataclass(frozen=True)
@@ -45,5 +42,5 @@ class EvaluationConfig:
     training_data: Path
     all_params: dict
     mlflow_uri: str
-    params_image_size: list
     params_batch_size: int
+    

@@ -1,5 +1,5 @@
 from lstm_price_prediction.config.configuration import ConfigurationManager
-from group_10_project.mlops.src.lstm_price_prediction.components.prepare_model import PrepareModel
+from lstm_price_prediction.components.prepare_model import PrepareModel
 from lstm_price_prediction import logger
 
 
