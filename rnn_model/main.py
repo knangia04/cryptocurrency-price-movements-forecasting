@@ -200,15 +200,14 @@ def main():
         plt.legend()
         plt.show()
 
+        print("----- Beginning backtesting -----")
+        print('Starting Portfolio Value: 100000')
+        print('=' * 89)
+            
+        final_value = backtest.backtest_model(model, args.backtesting_files, device, args.sequence_length)
         # Log model artifacts
         mlflow.log_artifact(args.save, "model.pth")
 
-    print("----- Beginning backtesting -----")
-    print('Starting Portfolio Value: 100000')
-    print('=' * 89)
-        
-    final_value = backtest.backtest_model(model, args.backtesting_files, device, args.sequence_length)
-    print('Final Portfolio Value: %.2f' % final_value)
 if  __name__ == '__main__':
     main()
 
