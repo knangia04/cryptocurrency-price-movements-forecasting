@@ -39,8 +39,8 @@ mlflow.set_experiment("Test experiment")
 parser = argparse.ArgumentParser(description='LOB RNN Model: Main Function')
 parser.add_argument('--data_file', type=str, default='../data',
                     help='location of market data')
-parser.add_argument('--backtesting_file', type=str, default='backtest.csv',
-                    help='location of backtesting data')
+parser.add_argument('--backtesting_files', nargs='+', type=str, default=['backtest.csv'],
+                    help='location of backtesting data (can pass multiple files)')
 parser.add_argument('--model', type=str, default='LSTM',
                     help='type of rnn (LSTM, GRU)')
 parser.add_argument('--hidden_size', type=int, default=128,
@@ -200,14 +200,19 @@ def main():
         mlflow.log_artifact(args.save, "model.pth")
 
     print("----- Beginning backtesting -----")
+    print('Starting Portfolio Value: 100000')
     print('=' * 89)
     t1 = time.time()
-    df = pd.read_csv(args.backtesting_file)
-    initial_value, final_value = backtest.backtest_model(model, args.backtesting_file, device, args.sequence_length)
+    currentValue = 100000
+    for file in args.backtesting_files:
+        final_value = backtest.backtest_model(model, file, device, args.sequence_length)
+        currentValue += final_value - 100000
+        print('Current Portfolio Value after ' + str(file) + ':  %.2f' % currentValue)
+        print('=' * 89)
     t2 = time.time()
-    print('Starting Portfolio Value: %.2f' % initial_value)
-    print('Final Portfolio Value: %.2f' % final_value)
-    print('Total Time to Backtest:' + str(t2 - t1))
+    
+    print('Final Portfolio Value: %.2f' % currentValue)
+    print('Total Time to Backtest:  ' + str(t2 - t1))
     print('=' * 89)
     print("----- End of backtesting -----")
     

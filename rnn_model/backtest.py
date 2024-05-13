@@ -215,8 +215,6 @@ def backtest_model(model, data_path, device, sequence_length):
         start_idx = i * section_size
         end_idx = min((i + 1) * section_size, len(temp))
         copy = temp.iloc[start_idx:end_idx]
-    
-        print(copy)
         
         df = pd.read_csv(data_path)
         df = df.iloc[start_idx:end_idx]
@@ -268,5 +266,5 @@ def backtest_model(model, data_path, device, sequence_length):
 
         portfolio_value += (simulate_trading(model, copy, device, sequence_length) - 100000)
 
-    return 100000, portfolio_value
+    return portfolio_value
         
