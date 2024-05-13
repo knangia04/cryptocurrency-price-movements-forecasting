@@ -33,7 +33,6 @@ import mlflow.tensorflow
 # import ray.cloudpickle as pickle
 
 # Initialize MLflow tracking
-mlflow.set_tracking_uri(uri="http://127.0.0.1:8080")
 mlflow.set_experiment("Test experiment")
 
 parser = argparse.ArgumentParser(description='LOB RNN Model: Main Function')
@@ -165,7 +164,6 @@ def main():
                         mlflow.pytorch.log_model(model, "model")  # Log the best model
                         torch.save(model.state_dict(), args.save)
                         min_val_loss = val_loss
-
                     # Log metrics
                     mlflow.log_metrics({"val_loss": val_loss, "accuracy": acc, "precision": precision, "recall": recall, "f1_score": f1})
 
@@ -189,8 +187,14 @@ def main():
         print('=' * 89)
         plt.figure()
         plt.plot(train_loss_log, label='Training loss')
+        plt.title('Training Loss')
+        plt.xlabel('Epochs')
+        plt.ylabel('Loss')
+        plt.legend()
+        plt.show()
+        
         plt.plot(val_loss_log, label='Validation loss')
-        plt.title('Training and Validation Loss')
+        plt.title('Validation Loss')
         plt.xlabel('Epochs')
         plt.ylabel('Loss')
         plt.legend()

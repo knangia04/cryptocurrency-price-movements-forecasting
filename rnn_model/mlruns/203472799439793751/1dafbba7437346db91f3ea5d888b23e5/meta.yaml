@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/howar/Documents/UIUC/IE%20421/project/group_10_project/rnn_model/mlruns/203472799439793751/1dafbba7437346db91f3ea5d888b23e5/artifacts
+end_time: 1715612277300
+entry_point_name: ''
+experiment_id: '203472799439793751'
+lifecycle_stage: active
+run_id: 1dafbba7437346db91f3ea5d888b23e5
+run_name: lyrical-ape-734
+run_uuid: 1dafbba7437346db91f3ea5d888b23e5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1715611614881
+status: 3
+tags: []
+user_id: howar

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/howar/Documents/UIUC/IE%20421/project/group_10_project/rnn_model/mlruns/203472799439793751/457d0ece7d3b4cb49edb2e0c485b25e4/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '203472799439793751'
+lifecycle_stage: active
+run_id: 457d0ece7d3b4cb49edb2e0c485b25e4
+run_name: upset-shad-886
+run_uuid: 457d0ece7d3b4cb49edb2e0c485b25e4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1715610864348
+status: 1
+tags: []
+user_id: howar

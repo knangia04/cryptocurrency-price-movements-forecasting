@@ -1,0 +1,8 @@
+mlflow<3,>=2.2
+astunparse==1.6.3
+cloudpickle==2.2.1
+dill==0.3.7
+numpy==1.23.5
+pathlib==1.0.1
+pydot==2.0.0
+torch==2.1.0
