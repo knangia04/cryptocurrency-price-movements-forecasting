@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/howar/Documents/UIUC/IE%20421/project/group_10_project/mlops/mlruns/0/f9e4735643b54a149ce27b74dadede16/artifacts
+end_time: 1715535284355
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f9e4735643b54a149ce27b74dadede16
+run_name: thundering-ant-350
+run_uuid: f9e4735643b54a149ce27b74dadede16
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1715535284283
+status: 4
+tags: []
+user_id: howar
