@@ -1,6 +1,10 @@
 import argparse
 import tempfile
 from functools import partial
+import os
+import zipfile
+import shutil
+import gzip
 import time
 import torch
 import torch.nn as nn
@@ -74,6 +78,7 @@ def main():
 
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+        
         df = pd.read_csv(args.data_file)
         
         print('Preprocessing data....')
