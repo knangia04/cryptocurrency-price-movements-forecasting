@@ -267,4 +267,5 @@ def backtest_model(model, data_path, device, sequence_length):
         portfolio_value += (simulate_trading(model, copy, device, sequence_length) - 100000)
 
     return portfolio_value
-        
+
+backtest_model(model=)
