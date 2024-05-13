@@ -202,20 +202,9 @@ def main():
     print("----- Beginning backtesting -----")
     print('Starting Portfolio Value: 100000')
     print('=' * 89)
-    t1 = time.time()
-    currentValue = 100000
-    for file in args.backtesting_files:
-        final_value = backtest.backtest_model(model, file, device, args.sequence_length)
-        currentValue += final_value - 100000
-        print('Current Portfolio Value after ' + str(file) + ':  %.2f' % currentValue)
-        print('=' * 89)
-    t2 = time.time()
-    
-    print('Final Portfolio Value: %.2f' % currentValue)
-    print('Total Time to Backtest:  ' + str(t2 - t1))
-    print('=' * 89)
-    print("----- End of backtesting -----")
-    
+        
+    final_value = backtest.backtest_model(model, args.backtesting_files, device, args.sequence_length)
+    print('Final Portfolio Value: %.2f' % final_value)
 if  __name__ == '__main__':
     main()
 

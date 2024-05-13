@@ -26,6 +26,7 @@ import preprocess
 import training_dataset
 import rnn_models
 from pathlib import Path
+import time
 from ray import tune
 from ray import train
 from ray.train import Checkpoint, get_checkpoint
@@ -207,64 +208,78 @@ def simulate_trading(model, data, device, sequence_length):
 
 
 def backtest_model(model, data_path, device, sequence_length):
-    temp = pd.read_csv(data_path)
-    section_size = 200000
-    num_sections = (len(temp) // section_size) + 1
     portfolio_value = 100000
-    for i in range(num_sections):
-        start_idx = i * section_size
-        end_idx = min((i + 1) * section_size, len(temp))
-        copy = temp.iloc[start_idx:end_idx]
+    t1 = time.time()
+    for file in data_path:
+        temp = pd.read_csv(file)
+        section_size = 200000
+        num_sections = (len(temp) // section_size) + 1
+
+        for i in range(num_sections):
+            start_idx = i * section_size
+            end_idx = min((i + 1) * section_size, len(temp))
+            copy = temp.iloc[start_idx:end_idx]
         
-        df = pd.read_csv(data_path)
-        df = df.iloc[start_idx:end_idx]
-        df2 = preprocess.cal_mid_price(df)
+            
+            
+            df = pd.read_csv(file)
+            df = df.iloc[start_idx:end_idx]
+            df2 = preprocess.cal_mid_price(df)
 
-        collection = copy["COLLECTION_TIME"]
+            collection = copy["COLLECTION_TIME"]
 
-        copy = copy.loc[:, 'BID_PRICE_1':]
-
-
-        num_rows = len(copy)
-        start_date = pd.to_datetime('1700-01-01')
-        copy['date'] = pd.date_range(start=start_date, periods=num_rows, freq='D').strftime('%Y-%m-%d')
+            copy = copy.loc[:, 'BID_PRICE_1':]
 
 
-        copy = copy[['date'] + [col for col in copy.columns if col != 'date']]
-        
-        copy.insert(1, 'MID_PRICE', df2.shift(1))
-
-        zeros_column = pd.Series([0]*len(df))
+            num_rows = len(copy)
+            start_date = pd.to_datetime('1700-01-01')
+            copy['date'] = pd.date_range(start=start_date, periods=num_rows, freq='D').strftime('%Y-%m-%d')
 
 
-        copy.insert(2, 'high', zeros_column)
-        copy.insert(3, 'low', zeros_column)
-        copy.insert(4, 'close', zeros_column)
-        copy.insert(5, 'volume', zeros_column)
-        copy.insert(6, 'openinterest', zeros_column)
+            copy = copy[['date'] + [col for col in copy.columns if col != 'date']]
+            
+            copy.insert(1, 'MID_PRICE', df2.shift(1))
 
-        copy['COLLECTION_TIME'] = collection
-
-        copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].replace('', np.nan)
-        copy['COLLECTION_TIME'] = pd.to_datetime(copy['COLLECTION_TIME'])
-
-        copy['year'] = copy['COLLECTION_TIME'].dt.year
-        copy['month'] = copy['COLLECTION_TIME'].dt.month
-        copy['day'] = copy['COLLECTION_TIME'].dt.day
-        copy['hour'] = copy['COLLECTION_TIME'].dt.hour
-        copy['minute'] = copy['COLLECTION_TIME'].dt.minute
-        copy['second'] = copy['COLLECTION_TIME'].dt.second
-        copy['microsecond'] = copy['COLLECTION_TIME'].dt.microsecond
-
-        copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            zeros_column = pd.Series([0]*len(df))
 
 
-        copy = copy.drop(columns=['COLLECTION_TIME'])
+            copy.insert(2, 'high', zeros_column)
+            copy.insert(3, 'low', zeros_column)
+            copy.insert(4, 'close', zeros_column)
+            copy.insert(5, 'volume', zeros_column)
+            copy.insert(6, 'openinterest', zeros_column)
+
+            copy['COLLECTION_TIME'] = collection
+
+            copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].replace('', np.nan)
+            copy['COLLECTION_TIME'] = pd.to_datetime(copy['COLLECTION_TIME'])
+
+            copy['year'] = copy['COLLECTION_TIME'].dt.year
+            copy['month'] = copy['COLLECTION_TIME'].dt.month
+            copy['day'] = copy['COLLECTION_TIME'].dt.day
+            copy['hour'] = copy['COLLECTION_TIME'].dt.hour
+            copy['minute'] = copy['COLLECTION_TIME'].dt.minute
+            copy['second'] = copy['COLLECTION_TIME'].dt.second
+            copy['microsecond'] = copy['COLLECTION_TIME'].dt.microsecond
+
+            copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 
-        copy.to_csv('backtestview.csv', index=False)
+            copy = copy.drop(columns=['COLLECTION_TIME'])
 
-        portfolio_value += (simulate_trading(model, copy, device, sequence_length) - 100000)
 
+            copy.to_csv('backtestview.csv', index=False)
+
+            portfolio_value += (simulate_trading(model, copy, device, sequence_length) - 100000)
+            print('Current Portfolio Value after ' + str(file) + ':  %.2f' % portfolio_value)
+            print('=' * 89)
+    
+    t2 = time.time()
+    
+    print('Final Portfolio Value: %.2f' % portfolio_value)
+    print('Total Time to Backtest:  ' + str(t2 - t1))
+    print('=' * 89)
+    print("----- End of backtesting -----")
     return portfolio_value
         
+
