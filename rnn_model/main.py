@@ -188,10 +188,13 @@ def main():
 
     print("----- Beginning backtesting -----")
     print('=' * 89)
+    t1 = time.time()
     df = pd.read_csv(args.backtesting_file)
-    initial_value, final_value = backtest.backtest_model(model, args.backtesting_file, device)
+    initial_value, final_value = backtest.backtest_model(model, args.backtesting_file, device, args.sequence_length)
+    t2 = time.time()
     print('Starting Portfolio Value: %.2f' % initial_value)
     print('Final Portfolio Value: %.2f' % final_value)
+    print('Total Time to Backtest:' + str(t2 - t1))
     print('=' * 89)
     print("----- End of backtesting -----")
     

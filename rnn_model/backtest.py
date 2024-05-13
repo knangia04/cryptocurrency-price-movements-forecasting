@@ -34,59 +34,9 @@ import ray.cloudpickle as pickle
 
 import backtrader as bt
 
-def backtest_model(model, data_path, device):
-    copy = pd.read_csv(data_path)
-    copy = copy[:200000]
-    df = pd.read_csv(data_path)
-    df = df[:200000]
-    df2 = preprocess.cal_mid_price(df)
 
-    collection = copy["COLLECTION_TIME"]
-
-    copy = copy.loc[:, 'BID_PRICE_1':]
-
-
-    num_rows = len(copy)
-    start_date = pd.to_datetime('1700-01-01')
-    copy['date'] = pd.date_range(start=start_date, periods=num_rows, freq='D').strftime('%Y-%m-%d')
-
-
-    copy = copy[['date'] + [col for col in copy.columns if col != 'date']]
-    
-    copy.insert(1, 'MID_PRICE', df2.shift(1))
-
-    zeros_column = pd.Series([0]*len(df))
-
-
-    copy.insert(2, 'high', zeros_column)
-    copy.insert(3, 'low', zeros_column)
-    copy.insert(4, 'close', zeros_column)
-    copy.insert(5, 'volume', zeros_column)
-    copy.insert(6, 'openinterest', zeros_column)
-
-    copy['COLLECTION_TIME'] = collection
-
-    copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].replace('', np.nan)
-    copy['COLLECTION_TIME'] = pd.to_datetime(copy['COLLECTION_TIME'])
-
-    copy['year'] = copy['COLLECTION_TIME'].dt.year
-    copy['month'] = copy['COLLECTION_TIME'].dt.month
-    copy['day'] = copy['COLLECTION_TIME'].dt.day
-    copy['hour'] = copy['COLLECTION_TIME'].dt.hour
-    copy['minute'] = copy['COLLECTION_TIME'].dt.minute
-    copy['second'] = copy['COLLECTION_TIME'].dt.second
-    copy['microsecond'] = copy['COLLECTION_TIME'].dt.microsecond
-
-    copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-
-
-    copy = copy.drop(columns=['COLLECTION_TIME'])
-
-
-    copy.to_csv('backtestview.csv', index=False)
-
-
-
+def simulate_trading(model, data, device, sequence_length):
+    zeros_column = pd.Series([0]*len(data))
     class MyDataFeed(bt.feeds.GenericCSVData):
 
         lines = ('BID_PRICE_1', 'BID_SIZE_1', 'BID_PRICE_2', 'BID_SIZE_2', 'BID_PRICE_3', 'BID_SIZE_3',
@@ -141,29 +91,31 @@ def backtest_model(model, data_path, device):
             self.index = 0
 
         def next(self):
-            
-            if self.index > 100:
-                bid_price_1 = [self.datas[0].__getattr__('BID_PRICE_1')[-i] for i in range(1, 100)]
-                bid_size_1 = [self.datas[0].__getattr__('BID_SIZE_1')[-i] for i in range(1, 100)]
-                bid_price_2 = [self.datas[0].__getattr__('BID_PRICE_2')[-i] for i in range(1, 100)]
-                bid_size_2 = [self.datas[0].__getattr__('BID_SIZE_2')[-i] for i in range(1, 100)]
-                bid_price_3 = [self.datas[0].__getattr__('BID_PRICE_3')[-i] for i in range(1, 100)]
-                bid_size_3 = [self.datas[0].__getattr__('BID_SIZE_3')[-i] for i in range(1, 100)]
+            startIdx = 2000
+            if sequence_length > 500:
+                startIdx = sequence_length * 4
+            if self.index > 2000:
+                bid_price_1 = [self.datas[0].__getattr__('BID_PRICE_1')[-i] for i in range(1, startIdx)]
+                bid_size_1 = [self.datas[0].__getattr__('BID_SIZE_1')[-i] for i in range(1, startIdx)]
+                bid_price_2 = [self.datas[0].__getattr__('BID_PRICE_2')[-i] for i in range(1, startIdx)]
+                bid_size_2 = [self.datas[0].__getattr__('BID_SIZE_2')[-i] for i in range(1, startIdx)]
+                bid_price_3 = [self.datas[0].__getattr__('BID_PRICE_3')[-i] for i in range(1, startIdx)]
+                bid_size_3 = [self.datas[0].__getattr__('BID_SIZE_3')[-i] for i in range(1, startIdx)]
                 
-                ask_price_1 = [self.datas[0].__getattr__('ASK_PRICE_1')[-i] for i in range(1, 100)]
-                ask_size_1 = [self.datas[0].__getattr__('ASK_SIZE_1')[-i] for i in range(1, 100)]
-                ask_price_2 = [self.datas[0].__getattr__('ASK_PRICE_2')[-i] for i in range(1, 100)]
-                ask_size_2 = [self.datas[0].__getattr__('ASK_SIZE_2')[-i] for i in range(1, 100)]
-                ask_price_3 = [self.datas[0].__getattr__('ASK_PRICE_3')[-i] for i in range(1, 100)]
-                ask_size_3 = [self.datas[0].__getattr__('ASK_SIZE_3')[-i] for i in range(1, 100)]
+                ask_price_1 = [self.datas[0].__getattr__('ASK_PRICE_1')[-i] for i in range(1, startIdx)]
+                ask_size_1 = [self.datas[0].__getattr__('ASK_SIZE_1')[-i] for i in range(1, startIdx)]
+                ask_price_2 = [self.datas[0].__getattr__('ASK_PRICE_2')[-i] for i in range(1, startIdx)]
+                ask_size_2 = [self.datas[0].__getattr__('ASK_SIZE_2')[-i] for i in range(1, startIdx)]
+                ask_price_3 = [self.datas[0].__getattr__('ASK_PRICE_3')[-i] for i in range(1, startIdx)]
+                ask_size_3 = [self.datas[0].__getattr__('ASK_SIZE_3')[-i] for i in range(1, startIdx)]
 
-                year = [self.datas[0].__getattr__('year')[-i] for i in range(1, 100)]
-                month = [self.datas[0].__getattr__('month')[-i] for i in range(1, 100)]
-                day = [self.datas[0].__getattr__('day')[-i] for i in range(1, 100)]
-                hour = [self.datas[0].__getattr__('hour')[-i] for i in range(1, 100)]
-                minute = [self.datas[0].__getattr__('minute')[-i] for i in range(1, 100)]
-                second = [self.datas[0].__getattr__('second')[-i] for i in range(1, 100)]
-                microsecond = [self.datas[0].__getattr__('microsecond')[-i] for i in range(1, 100)]
+                year = [self.datas[0].__getattr__('year')[-i] for i in range(1, startIdx)]
+                month = [self.datas[0].__getattr__('month')[-i] for i in range(1, startIdx)]
+                day = [self.datas[0].__getattr__('day')[-i] for i in range(1, startIdx)]
+                hour = [self.datas[0].__getattr__('hour')[-i] for i in range(1, startIdx)]
+                minute = [self.datas[0].__getattr__('minute')[-i] for i in range(1, startIdx)]
+                second = [self.datas[0].__getattr__('second')[-i] for i in range(1, startIdx)]
+                microsecond = [self.datas[0].__getattr__('microsecond')[-i] for i in range(1, startIdx)]
                 
 
                 data = {
@@ -203,9 +155,8 @@ def backtest_model(model, data_path, device):
 
                 base = preprocess.process_data(base)
 
-                # base.drop(columns=['Time_Delta'])
                 
-                X = base[-60:].drop('Time_Delta', axis=1).values
+                X = base[-(sequence_length):].drop('Time_Delta', axis=1).values
                 
 
                 input_tensor = torch.tensor(X, dtype=torch.float32)
@@ -246,11 +197,76 @@ def backtest_model(model, data_path, device):
     cerebro.adddata(data)
 
     cerebro.broker.setcash(100000.0)
-
-    initial_portfolio_value = cerebro.broker.getvalue()
         
     cerebro.run()
 
     end_portfolio_value = cerebro.broker.getvalue()
 
-    return initial_portfolio_value, end_portfolio_value
+    return end_portfolio_value
+
+
+
+def backtest_model(model, data_path, device, sequence_length):
+    temp = pd.read_csv(data_path)
+    section_size = 200000
+    num_sections = (len(temp) // section_size) + 1
+    portfolio_value = 100000
+    for i in range(num_sections):
+        start_idx = i * section_size
+        end_idx = min((i + 1) * section_size, len(temp))
+        copy = temp.iloc[start_idx:end_idx]
+    
+        print(copy)
+        
+        df = pd.read_csv(data_path)
+        df = df.iloc[start_idx:end_idx]
+        df2 = preprocess.cal_mid_price(df)
+
+        collection = copy["COLLECTION_TIME"]
+
+        copy = copy.loc[:, 'BID_PRICE_1':]
+
+
+        num_rows = len(copy)
+        start_date = pd.to_datetime('1700-01-01')
+        copy['date'] = pd.date_range(start=start_date, periods=num_rows, freq='D').strftime('%Y-%m-%d')
+
+
+        copy = copy[['date'] + [col for col in copy.columns if col != 'date']]
+        
+        copy.insert(1, 'MID_PRICE', df2.shift(1))
+
+        zeros_column = pd.Series([0]*len(df))
+
+
+        copy.insert(2, 'high', zeros_column)
+        copy.insert(3, 'low', zeros_column)
+        copy.insert(4, 'close', zeros_column)
+        copy.insert(5, 'volume', zeros_column)
+        copy.insert(6, 'openinterest', zeros_column)
+
+        copy['COLLECTION_TIME'] = collection
+
+        copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].replace('', np.nan)
+        copy['COLLECTION_TIME'] = pd.to_datetime(copy['COLLECTION_TIME'])
+
+        copy['year'] = copy['COLLECTION_TIME'].dt.year
+        copy['month'] = copy['COLLECTION_TIME'].dt.month
+        copy['day'] = copy['COLLECTION_TIME'].dt.day
+        copy['hour'] = copy['COLLECTION_TIME'].dt.hour
+        copy['minute'] = copy['COLLECTION_TIME'].dt.minute
+        copy['second'] = copy['COLLECTION_TIME'].dt.second
+        copy['microsecond'] = copy['COLLECTION_TIME'].dt.microsecond
+
+        copy['COLLECTION_TIME'] = copy['COLLECTION_TIME'].dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+
+
+        copy = copy.drop(columns=['COLLECTION_TIME'])
+
+
+        copy.to_csv('backtestview.csv', index=False)
+
+        portfolio_value += (simulate_trading(model, copy, device, sequence_length) - 100000)
+
+    return 100000, portfolio_value
+        
