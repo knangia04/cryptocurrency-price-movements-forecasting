@@ -17,3 +17,13 @@ The project is split into two primary folders: a modified version of the IEX par
 2) Run the IEX Parser with sbatch ccparse.sbatch. Note you may need to change the "account" value for future semesters.
 
 3) Train the LSTM model with sbatch rnn.sbatch.
+
+## Team Members
+
+Joseph Chen:
+
+Connor Flynn: UIUC Computer Science & Linguistics (Spring 2025), cjflynn2@illinois.edu, [LinkedIn](https://www.linkedin.com/in/connor-flynn-253960228/) 
+
+Krish Nangia:
+
+Ray Ko:
