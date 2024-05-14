@@ -40,7 +40,7 @@ import mlflow.tensorflow
 mlflow.set_experiment("Test experiment")
 
 parser = argparse.ArgumentParser(description='LOB RNN Model: Main Function')
-parser.add_argument('--data_file', type=str, default='../data',
+parser.add_argument('--data_file', type=str, default='../iex-campus-cluster/iex-downloader-parser/data/iex_downloads/202405*',
                     help='location of market data')
 parser.add_argument('--backtesting_files', nargs='+', type=str, default=['backtest.csv'],
                     help='location of backtesting data (can pass multiple files)')
