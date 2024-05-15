@@ -9,7 +9,6 @@ import time
 import torch
 import torch.nn as nn
 from tqdm import tqdm
-import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -17,7 +16,6 @@ from sklearn.metrics import *
 import pandas as pd
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import torch
 import training
 import preprocess
@@ -56,7 +54,7 @@ parser.add_argument('--predict_events', type=int, default=1,
                     help='the event in the future to predict')
 parser.add_argument('--learning_rate', type=float, default=0.0001,
                     help='learning rate')
-parser.add_argument('--num_epochs', type=int, default=50,
+parser.add_argument('--num_epochs', type=int, default=10,
                     help='number of epochs')
 parser.add_argument('--batch_size', type=int, default=512,
                     help='batch size')

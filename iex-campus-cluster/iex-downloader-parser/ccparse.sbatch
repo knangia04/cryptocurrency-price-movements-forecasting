@@ -11,7 +11,6 @@
 ########## Run your executable ######################
 ## Load required modules (Step 3 has been done)
 module load anaconda3/2024.02-Feb
-conda create -n my.anaconda python
 source activate my.anaconda
 conda install tqdm
 conda install requests

@@ -15,6 +15,9 @@ conda create -n my.anaconda python
 source activate my.anaconda
 conda install pytorch
 conda install torchvision
+conda install tqdm
+conda install scikit-learn
+conda install pandas
+conda install matplotlib
 ## Run script
-python main.py --backtesting_files "../iex-campus-cluster/iex-downloader-parser/data/book_snapshots"
-bash parse_all.sh
+python main.py --data_file "./20240130_book_updates.csv" --backtesting_files "../iex-campus-cluster/iex-downloader-parser/data/book_snapshots"

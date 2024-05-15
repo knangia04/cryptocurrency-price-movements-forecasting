@@ -20,7 +20,7 @@ The project is split into two primary folders: a modified version of the IEX par
 
 ## Team Members
 
-Joseph Chen:
+Joseph Chen: Computer Science (Spring 2025), josephpchen6@gmail.com, [LinkedIn](https://www.linkedin.com/in/joseph-chen-4a2b72246/)
 
 Connor Flynn: UIUC Computer Science & Linguistics (Spring 2025), cjflynn2@illinois.edu, [LinkedIn](https://www.linkedin.com/in/connor-flynn-253960228/) 
 

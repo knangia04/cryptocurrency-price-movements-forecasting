@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/howar/Documents/UIUC/IE%20421/project/group_10_project/rnn_model/mlruns/203472799439793751/a602c0c72ffd4dd898108d9393b9671d/artifacts
+end_time: 1715715268916
+entry_point_name: ''
+experiment_id: '203472799439793751'
+lifecycle_stage: active
+run_id: a602c0c72ffd4dd898108d9393b9671d
+run_name: efficient-dove-934
+run_uuid: a602c0c72ffd4dd898108d9393b9671d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1715715268882
+status: 4
+tags: []
+user_id: josephchen

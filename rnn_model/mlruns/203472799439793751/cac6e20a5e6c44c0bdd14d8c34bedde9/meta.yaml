@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/howar/Documents/UIUC/IE%20421/project/group_10_project/rnn_model/mlruns/203472799439793751/cac6e20a5e6c44c0bdd14d8c34bedde9/artifacts
+end_time: 1715706722030
+entry_point_name: ''
+experiment_id: '203472799439793751'
+lifecycle_stage: active
+run_id: cac6e20a5e6c44c0bdd14d8c34bedde9
+run_name: beautiful-foal-124
+run_uuid: cac6e20a5e6c44c0bdd14d8c34bedde9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1715706721978
+status: 4
+tags: []
+user_id: josephchen
