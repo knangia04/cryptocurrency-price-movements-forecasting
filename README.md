@@ -10,6 +10,15 @@ Our project aims to combine PyTorch, the [IEX Parser](https://gitlab.engr.illino
 
 The IEX parser serves as the basis of our pipeline, providing a daily dump of data for selected symbols (BITO,FBTC,BITB,ARKB). This data is used for backtesting and predictions in a PyTorch LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) models. Through running the project on the cluster, we hope to broaden access to ML training by eliminating computational and storage requirements. Finally, we priotitized the integration of MLOps (Machine Learning Operations) practices to ensure the efficiency, scalability, and reliability of our development cycle. Using MLFlow to organize the machine learning experiments into runs into experiment, each run captured the metadata such as parameters and metrics. We then used the MLFlow API to log the data related to training and evaluation.
 
+## Milestones Accomplished
+1) Got the data from the IEX parser. Developed basic visualizations and preprocess the data (remove outliers, normalization, missing values).  
+2) Developed an LSTM prototype on a smaller portion of the IEX dataset, before expanding it to other RNN models like GRU and modularizing the machine leanring code.
+3) Integrated the actual IEX parser data into the model prototype.
+4) Integrated a backtesting script to the model (see backtest.py and incorporation in main.py under rnn_model directory).
+5) Migrated the computing to the Campus Cluster.
+5) Fine-tuned the model to account for over/underfitting comparing the results from different optimization techniques.
+6) Incorporated MLOps into the model using MLFlow API.
+
 
 ## Usage
 
