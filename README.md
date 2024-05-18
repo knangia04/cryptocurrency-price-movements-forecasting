@@ -1,7 +1,5 @@
 # group_10_project
 
-## Team
-
 ## Overview
 
 The volatile and dynamic nature of cryptocurrency markets presents both opportunities and challenges for investors, traders, and enthusiasts alike. In this project, we aim to leverage the power of machine learning to develop predictive models capable of forecasting cryptocurrency price movements. By harnessing historical price data using previous semesters’ projects and the computing power provided by the university, we seek to build robust and accurate models that can provide valuable insights into the behavior of cryptocurrency markets. Through this endeavor, we aim to gain a deeper understanding of the underlying factors driving cryptocurrency price dynamics, the machine learning development process, and hands-on experience with cutting-edge computing technology.
@@ -32,7 +30,7 @@ The project is split into two primary folders: a modified version of the IEX par
 
 ## Team Members
 
-Joseph Chen: Computer Science (Spring 2025), josephpchen6@gmail.com, [LinkedIn](https://www.linkedin.com/in/joseph-chen-4a2b72246/)
+Joseph Chen: UIUC Computer Science (Spring 2025), josephpchen6@gmail.com, [LinkedIn](https://www.linkedin.com/in/joseph-chen-4a2b72246/)
 
 Connor Flynn: UIUC Computer Science & Linguistics (Spring 2025), cjflynn2@illinois.edu, [LinkedIn](https://www.linkedin.com/in/connor-flynn-253960228/) 
 
