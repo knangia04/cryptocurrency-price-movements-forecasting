@@ -40,4 +40,4 @@ My technical toolkit includes proficiency in programming languages such as Java
 
 ​I am very passionate about leveraging technology for the betterment of today's society. I hope to explore different aspects of software development and data science/analytics to ultimately use the skills gained to help further advance technology in other fields.
 
-Ray Ko:
+Ray Ko:UIUC Computer Science (December 2024) wko21@illinois.edu
